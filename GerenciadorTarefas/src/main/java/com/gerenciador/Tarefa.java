@@ -57,6 +57,9 @@ public class Tarefa {
 		if (prioridade == null) {
 			throw new IllegalArgumentException("Prioridade nao pode ser nulo");
 		}
+		if (!prioridade.equals("alta") && !prioridade.equals("media") && !prioridade.equals("baixa")) {
+			throw new IllegalArgumentException("Prioridade invalida, so pode alta, media ou baixa");
+		}
 		this.prioridade = prioridade;
 	}
 
