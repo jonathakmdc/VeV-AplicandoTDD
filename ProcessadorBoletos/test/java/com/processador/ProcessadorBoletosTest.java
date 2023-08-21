@@ -1,6 +1,7 @@
 package ProcessadorBoletos.test.java.com.processador;
 
 import ProcessadorBoletos.src.main.java.com.processador.Boleto;
+import ProcessadorBoletos.src.main.java.com.processador.ProcessadorDeBoletos;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -17,11 +18,10 @@ public class ProcessadorBoletosTest {
         Boleto boleto3 = new Boleto("778899", LocalDate.now(), 3000.0);
 
         ArrayList<Boleto> listaBoletos = new ArrayList<Boleto>();
-        listaBoletos.add(boleto1);
-        listaBoletos.add(boleto2);
-        listaBoletos.add(boleto3);
 
-        ProcessadorBoletos processadorBoletos = new ProcessadorBoletos(listaBoletos);
+        ProcessadorDeBoletos processadorBoletos = new ProcessadorDeBoletos(listaBoletos);
+
+        assertEquals(listaBoletos, processadorBoletos.getListaBoletos());
 
     }
 }
