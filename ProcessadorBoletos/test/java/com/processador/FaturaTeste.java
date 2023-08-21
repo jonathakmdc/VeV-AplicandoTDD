@@ -13,5 +13,9 @@ class FaturaTeste {
     @Test
     void testCriacao() {
         Fatura fatura = new Fatura(LocalDate.now(), 1500.00, "Carlos");
+
+        assertEquals(LocalDate.now(), fatura.getData());
+        assertEquals(1500.0, fatura.getValorTotal(), 2);
+        assertEquals("Carlos", fatura.getNomeCliente());
     }
 }
