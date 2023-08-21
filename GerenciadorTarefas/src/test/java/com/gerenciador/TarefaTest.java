@@ -36,5 +36,27 @@ class TarefaTest {
 		assertEquals(LocalDate.of(2023, 8, 1), tarefa.getDataDeVencimento());
 		assertEquals("media", tarefa.getPrioridade());
 	}
+	
+	@Test
+	void testEdicaoTarefaUnicoDado() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
+
+		assertEquals("Teste", tarefa.getTitulo());
+		assertEquals("descricaoTeste", tarefa.getDescricao());
+		assertEquals(LocalDate.now(), tarefa.getDataDeVencimento());
+		assertEquals("alta", tarefa.getPrioridade());
+		
+		tarefa.setTitulo("Fazer fichamento");
+		assertEquals("Fazer fichamento", tarefa.getTitulo());
+		
+		tarefa.setDescricao("realizar fichamento de ES");
+		assertEquals("realizar fichamento de ES", tarefa.getDescricao());
+		
+		tarefa.setDataDeVencimento(LocalDate.of(2023, 4, 20));
+		assertEquals(LocalDate.of(2023, 4, 20), tarefa.getDataDeVencimento());
+		
+		tarefa.setPrioridade("media");
+		assertEquals("media", tarefa.getPrioridade());
+	}
 
 }
