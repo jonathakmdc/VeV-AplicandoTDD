@@ -54,6 +54,9 @@ public class Tarefa {
 	}
 
 	public void setPrioridade(String prioridade) {
+		if (prioridade == null) {
+			throw new IllegalArgumentException("Prioridade nao pode ser nulo");
+		}
 		this.prioridade = prioridade;
 	}
 
