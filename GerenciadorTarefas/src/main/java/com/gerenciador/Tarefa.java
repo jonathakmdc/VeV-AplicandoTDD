@@ -47,6 +47,9 @@ public class Tarefa {
 	}
 
 	public void setDataDeVencimento(LocalDate dataDeVencimento) {
+		if (dataDeVencimento == null) {
+			throw new IllegalArgumentException("Data de vencimento nao pode ser nulo");
+		}
 		this.dataDeVencimento = dataDeVencimento;
 	}
 
