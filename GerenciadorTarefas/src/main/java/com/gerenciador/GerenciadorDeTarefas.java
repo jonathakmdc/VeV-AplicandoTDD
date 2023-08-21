@@ -20,4 +20,12 @@ public class GerenciadorDeTarefas {
 	public int getQuantidadeTarefas() {
 		return this.tarefas.size();
 	}
+
+	public void editarTarefa(int index, String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
+		this.tarefas.get(index).atualizaDetalhes(titulo, descricao, dataDeVencimento, prioridade);
+	}
+
+	public Tarefa getTarefa(int index) {
+		return this.tarefas.get(index);
+	}
 }
