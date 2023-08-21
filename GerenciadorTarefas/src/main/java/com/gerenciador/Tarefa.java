@@ -33,6 +33,9 @@ public class Tarefa {
 	}
 
 	public void setTitulo(String titulo) {
+		if (titulo == null ) {
+			throw new IllegalArgumentException("Titulo nao pode ser nulo");
+		}
 		this.titulo = titulo;
 	}
 
