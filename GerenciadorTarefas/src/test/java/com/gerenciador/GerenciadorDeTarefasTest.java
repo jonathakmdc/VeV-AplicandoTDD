@@ -91,6 +91,24 @@ class GerenciadorDeTarefasTest {
 				+ "2 - Revisar para prova - revisar assunto de ES - 2023-08-15 - media\n"
 				+ "3 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa\n"
 				+ "4 - Instalar VS Code - realizar instalacao de VS Code - 2023-08-16 - baixa", gerenciador.toString());
+		
+		gerenciador.excluirTarefa(1);
+		
+		assertEquals("0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n"
+				+ "1 - Revisar para prova - revisar assunto de ES - 2023-08-15 - media\n"
+				+ "2 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa\n"
+				+ "3 - Instalar VS Code - realizar instalacao de VS Code - 2023-08-16 - baixa", gerenciador.toString());
+		
+		gerenciador.excluirTarefa(3);
+		gerenciador.excluirTarefa(1);
+		
+		assertEquals("0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n"
+				+ "1 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa", gerenciador.toString());
+		
+		gerenciador.excluirTarefa(1);
+		gerenciador.excluirTarefa(0);
+		
+		assertEquals("", gerenciador.toString());
 	}
 
 }
