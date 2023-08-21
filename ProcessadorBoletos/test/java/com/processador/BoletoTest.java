@@ -1,5 +1,6 @@
 package ProcessadorBoletos.test.java.com.processador;
 
+import ProcessadorBoletos.src.main.java.com.processador.Boleto;
 import ProcessadorBoletos.src.main.java.com.processador.Fatura;
 import org.junit.jupiter.api.Test;
 
@@ -13,5 +14,8 @@ public class BoletoTest {
     void testCriacao() {
         Boleto boleto = new Boleto("112233", LocalDate.now(), 1500.0);
 
+        assertEquals("112233", boleto.getCodigoBoleto());
+        assertEquals(LocalDate.now(), boleto.getData());
+        assertEquals(1500.0, boleto.getValorPago(), 2);
     }
 }
