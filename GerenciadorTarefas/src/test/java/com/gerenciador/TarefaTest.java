@@ -94,4 +94,16 @@ class TarefaTest {
 			assertEquals("Data de vencimento nao pode ser nulo", e.getMessage());
 		}
 	}
+	
+	@Test
+	void testExcecaoPrioridadeNula() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
+
+		try {
+			tarefa.setPrioridade(null);
+			fail("Exceção deveria ter sido lançada!");
+		} catch(IllegalArgumentException e) {
+			assertEquals("Prioridade nao pode ser nulo", e.getMessage());
+		}
+	}
 }
