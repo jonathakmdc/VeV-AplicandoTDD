@@ -13,10 +13,12 @@ class GerenciadorDeTarefasTest {
 	@Test
 	void testCriacaoDeTarefa() {
 		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
-
-		assertEquals(0,
-				gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "media"));
+		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
+		gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "media");
+		
+		assertEquals(1, gerenciador.getQuantidadeTarefas());
+
 	}
 
 }
