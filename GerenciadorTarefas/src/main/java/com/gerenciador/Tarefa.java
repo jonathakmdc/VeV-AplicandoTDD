@@ -10,10 +10,10 @@ public class Tarefa {
 	private String prioridade;
 
 	public Tarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.dataDeVencimento = dataDeVencimento;
-		this.prioridade = prioridade;
+		this.setTitulo(titulo);
+		this.setDescricao(descricao);
+		this.setDataDeVencimento(dataDeVencimento);
+		this.setPrioridade(prioridade);
 	}
 
 	public String getTitulo() {
