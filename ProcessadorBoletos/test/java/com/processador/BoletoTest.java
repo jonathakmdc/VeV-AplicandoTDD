@@ -1,7 +1,6 @@
 package ProcessadorBoletos.test.java.com.processador;
 
 import ProcessadorBoletos.src.main.java.com.processador.Boleto;
-import ProcessadorBoletos.src.main.java.com.processador.Fatura;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
