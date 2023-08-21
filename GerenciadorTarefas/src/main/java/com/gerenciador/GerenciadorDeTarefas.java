@@ -3,6 +3,7 @@ package main.java.com.gerenciador;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 public class GerenciadorDeTarefas {
 	private List<Tarefa> tarefas;
@@ -37,5 +38,14 @@ public class GerenciadorDeTarefas {
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
+	}
+
+	public boolean excluirTarefa(int index) {
+		try {
+			this.tarefas.remove(index);
+		} catch (IndexOutOfBoundsException e) {
+			return false;
+		}
+		return true;
 	}
 }
