@@ -106,4 +106,25 @@ class TarefaTest {
 			assertEquals("Prioridade nao pode ser nulo", e.getMessage());
 		}
 	}
+	
+	@Test
+	void testExcecaoPrioridadeInvalida() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
+		
+		tarefa.setPrioridade("baixa");
+		assertEquals("baixa", tarefa.getPrioridade());
+		
+		tarefa.setPrioridade("alta");
+		assertEquals("alta", tarefa.getPrioridade());
+		
+		tarefa.setPrioridade("media");
+		assertEquals("media", tarefa.getPrioridade());
+		
+		try {
+			tarefa.setPrioridade("ok");
+			fail("Exceção deveria ter sido lançada!");
+		} catch(IllegalArgumentException e) {
+			assertEquals("Prioridade invalida, so pode alta, media ou baixa", e.getMessage());
+		}
+	}
 }
