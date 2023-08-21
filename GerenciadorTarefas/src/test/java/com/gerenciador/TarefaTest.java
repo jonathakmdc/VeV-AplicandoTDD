@@ -70,5 +70,17 @@ class TarefaTest {
 			assertEquals("Titulo nao pode ser nulo", e.getMessage());
 		}
 	}
+	
+	@Test
+	void testExcecaoDescricaoInvalida() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
+
+		try {
+			tarefa.setDescricao(null);
+			fail("Exceção deveria ter sido lançada!");
+		} catch(IllegalArgumentException e) {
+			assertEquals("Descricao nao pode ser nulo", e.getMessage());
+		}
+	}
 
 }
