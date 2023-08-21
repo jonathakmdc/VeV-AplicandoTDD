@@ -9,7 +9,6 @@ public class Tarefa {
 	private String prioridade;
 	
 	public Tarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
-		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.dataDeVencimento = dataDeVencimento;
@@ -30,6 +29,13 @@ public class Tarefa {
 
 	public String getPrioridade() {
 		return prioridade;
+	}
+
+	public void atualizaDetalhes(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.dataDeVencimento = dataDeVencimento;
+		this.prioridade = prioridade;
 	}
 
 }
