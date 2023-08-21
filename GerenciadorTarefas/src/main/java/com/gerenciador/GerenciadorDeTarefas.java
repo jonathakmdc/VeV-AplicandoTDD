@@ -13,7 +13,7 @@ public class GerenciadorDeTarefas {
 
 	public void addTarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
 		Tarefa tarefa = new Tarefa(titulo, descricao, dataDeVencimento, prioridade);
-		
+
 		this.tarefas.add(tarefa);
 	}
 
@@ -21,11 +21,21 @@ public class GerenciadorDeTarefas {
 		return this.tarefas.size();
 	}
 
-	public void editarTarefa(int index, String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
-		this.tarefas.get(index).atualizaDetalhes(titulo, descricao, dataDeVencimento, prioridade);
+	public Tarefa editarTarefa(int index, String titulo, String descricao, LocalDate dataDeVencimento,
+			String prioridade) {
+		try {
+			this.tarefas.get(index).atualizaDetalhes(titulo, descricao, dataDeVencimento, prioridade);
+			return this.getTarefa(index);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	public Tarefa getTarefa(int index) {
-		return this.tarefas.get(index);
+		try {
+			return this.tarefas.get(index);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 }
