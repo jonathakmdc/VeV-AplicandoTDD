@@ -82,5 +82,16 @@ class TarefaTest {
 			assertEquals("Descricao nao pode ser nulo", e.getMessage());
 		}
 	}
+	
+	@Test
+	void testExcecaoDataDeVencimentoInvalida() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
 
+		try {
+			tarefa.setDataDeVencimento(null);
+			fail("Exceção deveria ter sido lançada!");
+		} catch(IllegalArgumentException e) {
+			assertEquals("Data de vencimento nao pode ser nulo", e.getMessage());
+		}
+	}
 }
