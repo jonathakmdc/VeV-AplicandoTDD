@@ -58,5 +58,17 @@ class TarefaTest {
 		tarefa.setPrioridade("media");
 		assertEquals("media", tarefa.getPrioridade());
 	}
+	
+	@Test
+	void testExcecaoTituloInvalido() {
+		Tarefa tarefa = new Tarefa("Teste", "descricaoTeste", LocalDate.now(), "alta");
+
+		try {
+			tarefa.setTitulo(null);
+			fail("Exceção deveria ter sido lançada!");
+		} catch(IllegalArgumentException e) {
+			assertEquals("Titulo nao pode ser nulo", e.getMessage());
+		}
+	}
 
 }
