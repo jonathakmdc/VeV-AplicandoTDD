@@ -8,7 +8,7 @@ public class Tarefa {
 	private String descricao;
 	private LocalDate dataDeVencimento;
 	private String prioridade;
-	
+
 	public Tarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -33,13 +33,16 @@ public class Tarefa {
 	}
 
 	public void setTitulo(String titulo) {
-		if (titulo == null ) {
+		if (titulo == null) {
 			throw new IllegalArgumentException("Titulo nao pode ser nulo");
 		}
 		this.titulo = titulo;
 	}
 
 	public void setDescricao(String descricao) {
+		if (descricao == null) {
+			throw new IllegalArgumentException("Descricao nao pode ser nulo");
+		}
 		this.descricao = descricao;
 	}
 
