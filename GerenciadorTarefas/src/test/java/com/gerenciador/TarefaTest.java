@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import main.java.com.gerenciador.Tarefa;
+
 class TarefaTest {
 
 	@Test
