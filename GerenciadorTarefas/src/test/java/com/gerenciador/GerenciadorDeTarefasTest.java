@@ -31,16 +31,19 @@ class GerenciadorDeTarefasTest {
 		
 		assertEquals(1, gerenciador.getQuantidadeTarefas());
 		
-		assertEquals(new Tarefa("Fazer Atividade 2", "realizar atividade de cálculo", LocalDate.of(2023, 8, 15), "baixa"), gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de cálculo", LocalDate.of(2023, 8, 15), "baixa"));
-		
+		assertEquals(
+				new Tarefa("Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"),
+				gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de calculo",
+						LocalDate.of(2023, 8, 15), "baixa"));
+
 		assertEquals("Fazer Atividade 2", gerenciador.getTarefa(0).getTitulo());
-		assertEquals("realizar atividade de cálculo", gerenciador.getTarefa(0).getDescricao());
+		assertEquals("realizar atividade de calculo", gerenciador.getTarefa(0).getDescricao());
 		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
 		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
 		
 		assertEquals(null, gerenciador.getTarefa(1));
 		
-		assertEquals(null, gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de cálculo", LocalDate.of(2023, 8, 15), "baixa"));
+		assertEquals(null, gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"));
 	}
 	
 	@Test
@@ -48,10 +51,10 @@ class GerenciadorDeTarefasTest {
 		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
-		gerenciador.addTarefa("Fazer Atividade 2", "realizar atividade de cálculo", LocalDate.of(2023, 8, 15), "baixa");
+		gerenciador.addTarefa("Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa");
 		
 		assertEquals("Fazer Atividade 2", gerenciador.getTarefa(0).getTitulo());
-		assertEquals("realizar atividade de cálculo", gerenciador.getTarefa(0).getDescricao());
+		assertEquals("realizar atividade de calculo", gerenciador.getTarefa(0).getDescricao());
 		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
 		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
 		
@@ -71,22 +74,23 @@ class GerenciadorDeTarefasTest {
 		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
-		gerenciador.addTarefa("Fazer Atividade 2", "realizar atividade de cálculo", LocalDate.of(2023, 8, 15), "baixa");
+		gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "baixa");
 		
-		assertEquals("Fazer Atividade 2", gerenciador.getTarefa(0).getTitulo());
-		assertEquals("realizar atividade de cálculo", gerenciador.getTarefa(0).getDescricao());
-		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
-		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
+		gerenciador.addTarefa("Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa");
 		
-		assertEquals(1, gerenciador.getQuantidadeTarefas());
+		gerenciador.addTarefa("Revisar para prova", "revisar assunto de ES", LocalDate.of(2023, 8, 15), "media");
 		
-		assertTrue(gerenciador.excluirTarefa(0));
+		gerenciador.addTarefa("Fazer Atividade AS", "realizar atividade de AS", LocalDate.of(2023, 8, 15), "alta");
 		
-		assertEquals(0, gerenciador.getQuantidadeTarefas());
+		gerenciador.addTarefa("Instalar VS Code", "realizar instalacao de VS Code", LocalDate.of(2023, 8, 16), "baixa");
 		
-		assertEquals(null, gerenciador.getTarefa(0));
+		assertEquals(5, gerenciador.getQuantidadeTarefas());
 		
-		assertFalse(gerenciador.excluirTarefa(0));
+		assertEquals("0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n"
+				+ "1 - Fazer Atividade AS - realizar atividade de AS - 2023-08-15 - alta\n"
+				+ "2 - Revisar para prova - revisar assunto de ES - 2023-08-15 - media\n"
+				+ "3 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa\n"
+				+ "4 - Instalar VS Code - realizar instalacao de VS Code - 2023-08-16 - baixa", gerenciador.toString());
 	}
 
 }
