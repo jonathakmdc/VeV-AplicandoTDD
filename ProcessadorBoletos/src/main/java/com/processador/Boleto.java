@@ -42,10 +42,28 @@ public class Boleto {
         return valorPago;
     }
 
-    public Boleto(String codigoBoleto, LocalDate data, double valorPago) {
+    public void setCodigoBoleto(String codigoBoleto) {
+        if (codigoBoleto == null) {
+            throw new IllegalArgumentException("codigoBoleto nao pode ser nulo");
+        }
         this.codigoBoleto = codigoBoleto;
+    }
+
+    public void setData(LocalDate data) {
+        if (data == null) {
+            throw new IllegalArgumentException("data nao pode ser nulo");
+        }
         this.data = data;
+    }
+
+    public void setValorPago(double valorPago) {
         this.valorPago = valorPago;
+    }
+
+    public Boleto(String codigoBoleto, LocalDate data, double valorPago) {
+        this.setCodigoBoleto(codigoBoleto);
+        this.setData(data);
+        this.setValorPago(valorPago);
     }
 
 }

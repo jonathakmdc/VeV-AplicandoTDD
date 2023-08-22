@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Pagamento {
-    double valorPago;
-    LocalDate data;
-    String tipoPagamento;
+    private double valorPago;
+    private LocalDate data;
+    private String tipoPagamento;
 
     @Override
     public boolean equals(Object o) {
@@ -30,10 +30,28 @@ public class Pagamento {
                 '}';
     }
 
-    public Pagamento(double valorPago, LocalDate data, String tipoPagamento) {
+    public void setValorPago(double valorPago) {
         this.valorPago = valorPago;
+    }
+
+    public void setData(LocalDate data) {
+        if (data == null) {
+            throw new IllegalArgumentException("data nao pode ser nulo");
+        }
         this.data = data;
+    }
+
+    public void setTipoPagamento(String tipoPagamento) {
+        if (tipoPagamento == null) {
+            throw new IllegalArgumentException("tipoPagamento nao pode ser nulo");
+        }
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public Pagamento(double valorPago, LocalDate data, String tipoPagamento) {
+        this.setValorPago(valorPago);
+        this.setData(data);
+        this.setTipoPagamento(tipoPagamento);
     }
 
     public double getValorPago() {

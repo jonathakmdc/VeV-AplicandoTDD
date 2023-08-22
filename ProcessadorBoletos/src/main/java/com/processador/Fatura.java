@@ -12,11 +12,28 @@ public class Fatura {
 
 
     public Fatura(LocalDate data, double valorTotal, String nomeCliente) {
-        this.data = data;
-        this.valorTotal = valorTotal;
-        this.nomeCliente = nomeCliente;
+        this.setData(data);
+        this.setValorTotal(valorTotal);
+        this.setNomeCliente(nomeCliente);
     }
 
+    public void setData(LocalDate data) {
+        if (data == null) {
+            throw new IllegalArgumentException("data nao pode ser nulo");
+        }
+        this.data = data;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        if (nomeCliente == null) {
+            throw new IllegalArgumentException("nomeCliente nao pode ser nulo");
+        }
+        this.nomeCliente = nomeCliente;
+    }
 
     public LocalDate getData() {
         return data;
