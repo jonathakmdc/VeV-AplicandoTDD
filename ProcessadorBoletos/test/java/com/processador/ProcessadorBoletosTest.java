@@ -21,6 +21,11 @@ public class ProcessadorBoletosTest {
         ArrayList<Boleto> listaBoletos = new ArrayList<Boleto>();
         ArrayList<Pagamento> pagamentos = new ArrayList<Pagamento>();
 
+        listaBoletos.add(boleto1);
+        listaBoletos.add(boleto2);
+        listaBoletos.add(boleto3);
+
+
         Pagamento pagamento1 = new Pagamento(boleto1.getValorPago(), boleto1.getData(),"BOLETO");
         Pagamento pagamento2 = new Pagamento(boleto2.getValorPago(), boleto2.getData(),"BOLETO");
         Pagamento pagamento3 = new Pagamento(boleto3.getValorPago(), boleto3.getData(),"BOLETO");
@@ -28,7 +33,8 @@ public class ProcessadorBoletosTest {
         pagamentos.add(pagamento2);
         pagamentos.add(pagamento3);
 
-        assertEquals(pagamentos, processadorBoletos.analisaBoletos(listaBoletos));
+        ProcessadorDeBoletos processadorDeBoletos = new ProcessadorDeBoletos();
+        assertEquals(pagamentos, processadorDeBoletos.analisaBoletos(listaBoletos));
 
     }
 }
