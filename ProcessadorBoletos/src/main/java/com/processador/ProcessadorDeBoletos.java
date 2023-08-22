@@ -25,5 +25,14 @@ public class ProcessadorDeBoletos {
         return totalPago;
     }
 
+    public Boolean verificaFaturaPaga(double totalPago, double valorFatura) {
+        if(totalPago >= valorFatura) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 }

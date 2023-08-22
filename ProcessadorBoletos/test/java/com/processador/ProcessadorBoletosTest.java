@@ -37,4 +37,20 @@ public class ProcessadorBoletosTest {
         assertEquals(pagamentos, processadorDeBoletos.analisaBoletos(listaBoletos));
 
     }
+
+    @Test
+    void testSomatorioValores() {
+        Boleto boleto1 = new Boleto("112233", LocalDate.now(), 500);
+        Boleto boleto2 = new Boleto("445566", LocalDate.now(), 500);
+        Boleto boleto3 = new Boleto("778899", LocalDate.now(), 200);
+
+        ArrayList<Boleto> listaBoletos = new ArrayList<Boleto>();
+
+        listaBoletos.add(boleto1);
+        listaBoletos.add(boleto2);
+        listaBoletos.add(boleto3);
+
+        ProcessadorDeBoletos processadorDeBoletos = new ProcessadorDeBoletos();
+        assertEquals(1200.00, processadorDeBoletos.somaBoletosPagos(listaBoletos), 2);
+    }
 }
