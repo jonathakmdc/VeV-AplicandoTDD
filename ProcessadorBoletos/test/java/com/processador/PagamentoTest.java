@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PagamentoTest {
 
@@ -15,7 +15,7 @@ public class PagamentoTest {
 
         assertEquals(1500.0, pagamento.getValorPago(), 2);
         assertEquals(LocalDate.now(), pagamento.getData());
-        assertEquals("Boleto", pagamento.getTipoPagamento());
+        assertEquals("BOLETO", pagamento.getTipoPagamento());
 
     }
 }
