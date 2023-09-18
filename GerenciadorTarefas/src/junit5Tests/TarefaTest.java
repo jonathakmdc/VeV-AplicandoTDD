@@ -3,6 +3,8 @@ package GerenciadorTarefas.src.junit5Tests;
 import main.java.com.gerenciador.Tarefa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 
@@ -101,17 +103,12 @@ class TarefaTest {
 		}
 	}
 	
-	@Test
-	void testExcecaoPrioridadeInvalida() {
-		tarefa.setPrioridade("baixa");
-		assertEquals("baixa", tarefa.getPrioridade());
-		
-		tarefa.setPrioridade("alta");
-		assertEquals("alta", tarefa.getPrioridade());
-		
-		tarefa.setPrioridade("media");
-		assertEquals("media", tarefa.getPrioridade());
-		
+	@ParameterizedTest
+	@ValueSource(strings = {"alta", "media", "baixa"})
+	void testExcecaoPrioridadeInvalida(String prioridade) {
+		tarefa.setPrioridade(prioridade);
+		assertEquals(prioridade, tarefa.getPrioridade());
+
 		try {
 			tarefa.setPrioridade("ok");
 			fail("Exceção deveria ter sido lançada!");
