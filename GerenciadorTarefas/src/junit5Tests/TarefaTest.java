@@ -9,9 +9,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Testes de Unidade para Classe Tarefa")
 class TarefaTest {
 
 	Tarefa tarefa;
@@ -70,45 +70,37 @@ class TarefaTest {
 	@Test
 	@DisplayName("Teste para lancamento da excecao ao colocar titulo invalido")
 	void testExcecaoTituloInvalido() {
-		try {
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
 			tarefa.setTitulo(null);
-			fail("Exceção deveria ter sido lançada!");
-		} catch(IllegalArgumentException e) {
-			assertEquals("Titulo nao pode ser nulo", e.getMessage());
-		}
+		});
+		assertEquals("Titulo nao pode ser nulo", e.getMessage());
 	}
 	
 	@Test
 	@DisplayName("Teste para lancamento da excecao ao colocar descricao invalida")
 	void testExcecaoDescricaoInvalida() {
-		try {
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
 			tarefa.setDescricao(null);
-			fail("Exceção deveria ter sido lançada!");
-		} catch(IllegalArgumentException e) {
-			assertEquals("Descricao nao pode ser nulo", e.getMessage());
-		}
+		});
+		assertEquals("Descricao nao pode ser nulo", e.getMessage());
 	}
 	
 	@Test
 	@DisplayName("Teste para lancamento da excecao ao colocar data de vencimento invalida")
 	void testExcecaoDataDeVencimentoInvalida() {
-		try {
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
 			tarefa.setDataDeVencimento(null);
-			fail("Exceção deveria ter sido lançada!");
-		} catch(IllegalArgumentException e) {
-			assertEquals("Data de vencimento nao pode ser nulo", e.getMessage());
-		}
+		});
+		assertEquals("Data de vencimento nao pode ser nulo", e.getMessage());
 	}
 	
 	@Test
 	@DisplayName("Teste para lancamento da excecao ao colocar prioridade invalida")
 	void testExcecaoPrioridadeNula() {
-		try {
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
 			tarefa.setPrioridade(null);
-			fail("Exceção deveria ter sido lançada!");
-		} catch(IllegalArgumentException e) {
-			assertEquals("Prioridade nao pode ser nulo", e.getMessage());
-		}
+		});
+		assertEquals("Prioridade nao pode ser nulo", e.getMessage());
 	}
 	
 	@ParameterizedTest
@@ -118,11 +110,9 @@ class TarefaTest {
 		tarefa.setPrioridade(prioridade);
 		assertEquals(prioridade, tarefa.getPrioridade());
 
-		try {
-			tarefa.setPrioridade("ok");
-			fail("Exceção deveria ter sido lançada!");
-		} catch(IllegalArgumentException e) {
-			assertEquals("Prioridade invalida, so pode alta, media ou baixa", e.getMessage());
-		}
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+			tarefa.setPrioridade(prioridade + ".");
+		});
+		assertEquals("Prioridade invalida, so pode alta, media ou baixa", e.getMessage());
 	}
 }
