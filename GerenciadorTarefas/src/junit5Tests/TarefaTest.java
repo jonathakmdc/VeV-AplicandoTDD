@@ -2,6 +2,7 @@ package GerenciadorTarefas.src.junit5Tests;
 
 import main.java.com.gerenciador.Tarefa;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -21,6 +22,7 @@ class TarefaTest {
 	}
 
 	@Test
+	@DisplayName("Teste para criacao de tarefas")
 	void testCriacaoTarefa(){
 		assertEquals("Teste", tarefa.getTitulo());
 		assertEquals("descricaoTeste", tarefa.getDescricao());
@@ -29,6 +31,7 @@ class TarefaTest {
 	}
 
 	@Test
+	@DisplayName("Teste da edicao de tarefas")
 	void testEdicaoTarefa() {
 		assertEquals("Teste", tarefa.getTitulo());
 		assertEquals("descricaoTeste", tarefa.getDescricao());
@@ -44,6 +47,7 @@ class TarefaTest {
 	}
 	
 	@Test
+	@DisplayName("Teste da edicao de um unico dado das tarefas")
 	void testEdicaoTarefaUnicoDado() {
 		assertEquals("Teste", tarefa.getTitulo());
 		assertEquals("descricaoTeste", tarefa.getDescricao());
@@ -64,6 +68,7 @@ class TarefaTest {
 	}
 	
 	@Test
+	@DisplayName("Teste para lancamento da excecao ao colocar titulo invalido")
 	void testExcecaoTituloInvalido() {
 		try {
 			tarefa.setTitulo(null);
@@ -74,6 +79,7 @@ class TarefaTest {
 	}
 	
 	@Test
+	@DisplayName("Teste para lancamento da excecao ao colocar descricao invalida")
 	void testExcecaoDescricaoInvalida() {
 		try {
 			tarefa.setDescricao(null);
@@ -84,6 +90,7 @@ class TarefaTest {
 	}
 	
 	@Test
+	@DisplayName("Teste para lancamento da excecao ao colocar data de vencimento invalida")
 	void testExcecaoDataDeVencimentoInvalida() {
 		try {
 			tarefa.setDataDeVencimento(null);
@@ -94,6 +101,7 @@ class TarefaTest {
 	}
 	
 	@Test
+	@DisplayName("Teste para lancamento da excecao ao colocar prioridade invalida")
 	void testExcecaoPrioridadeNula() {
 		try {
 			tarefa.setPrioridade(null);
@@ -104,6 +112,7 @@ class TarefaTest {
 	}
 	
 	@ParameterizedTest
+	@DisplayName("Teste para verificacao de prioridade valida")
 	@ValueSource(strings = {"alta", "media", "baixa"})
 	void testExcecaoPrioridadeInvalida(String prioridade) {
 		tarefa.setPrioridade(prioridade);
