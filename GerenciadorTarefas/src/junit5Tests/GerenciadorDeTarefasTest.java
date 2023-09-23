@@ -3,12 +3,14 @@ package GerenciadorTarefas.src.junit5Tests;
 import main.java.com.gerenciador.GerenciadorDeTarefas;
 import main.java.com.gerenciador.Tarefa;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Testes de Unidade para Classe GerenciadorDeTarefas")
 class GerenciadorDeTarefasTest {
 
 	GerenciadorDeTarefas gerenciador;
@@ -19,6 +21,7 @@ class GerenciadorDeTarefasTest {
 	}
 
 	@Test
+	@DisplayName("Teste para criacao de tarefas")
 	void testCriacaoDeTarefa() {
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
@@ -29,6 +32,7 @@ class GerenciadorDeTarefasTest {
 	}
 	
 	@Test
+	@DisplayName("Teste da edicao de tarefas")
 	void testEdicaoDeTarefa() {
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
@@ -57,6 +61,7 @@ class GerenciadorDeTarefasTest {
 	}
 	
 	@Test
+	@DisplayName("Teste da exclusao de tarefas")
 	void testExclusaoTarefa() {
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
@@ -79,6 +84,7 @@ class GerenciadorDeTarefasTest {
 	}
 	
 	@Test
+	@DisplayName("Teste da Listagem de Tarefas")
 	void testListagemTarefas() {
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
