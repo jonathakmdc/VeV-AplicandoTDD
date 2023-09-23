@@ -41,10 +41,15 @@ class GerenciadorDeTarefasTest {
 				gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de calculo",
 						LocalDate.of(2023, 8, 15), "baixa"));
 
-		assertEquals("Fazer Atividade 2", gerenciador.getTarefa(0).getTitulo());
-		assertEquals("realizar atividade de calculo", gerenciador.getTarefa(0).getDescricao());
-		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
-		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
+		Tarefa tarefaEditada = gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de calculo",
+				LocalDate.of(2023, 8, 15), "baixa");
+
+		assertAll("Verificação da Edição de Tarefa",
+				() -> assertEquals("Fazer Atividade 2", tarefaEditada.getTitulo(), "Título não corresponde"),
+				() -> assertEquals("realizar atividade de calculo", tarefaEditada.getDescricao(), "Descrição não corresponde"),
+				() -> assertEquals(LocalDate.of(2023, 8, 15), tarefaEditada.getDataDeVencimento(), "Data de vencimento não corresponde"),
+				() -> assertEquals("baixa", tarefaEditada.getPrioridade(), "Prioridade não corresponde")
+		);
 		
 		assertNull(gerenciador.getTarefa(1));
 		
