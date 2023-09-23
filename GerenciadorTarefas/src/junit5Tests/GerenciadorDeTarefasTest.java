@@ -46,9 +46,9 @@ class GerenciadorDeTarefasTest {
 		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
 		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
 		
-		assertEquals(null, gerenciador.getTarefa(1));
+		assertNull(gerenciador.getTarefa(1));
 		
-		assertEquals(null, gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"));
+		assertNull(gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"));
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ class GerenciadorDeTarefasTest {
 		
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
-		assertEquals(null, gerenciador.getTarefa(0));
+		assertNull(gerenciador.getTarefa(0));
 		
 		assertFalse(gerenciador.excluirTarefa(0));
 	}
