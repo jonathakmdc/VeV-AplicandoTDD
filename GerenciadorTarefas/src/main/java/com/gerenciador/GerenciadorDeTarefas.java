@@ -1,4 +1,4 @@
-package main.java.com.gerenciador;
+package GerenciadorTarefas.src.main.java.com.gerenciador;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

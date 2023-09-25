@@ -1,6 +1,6 @@
 package GerenciadorTarefas.src.junit5Tests;
 
-import main.java.com.gerenciador.Tarefa;
+import GerenciadorTarefas.src.main.java.com.gerenciador.Tarefa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

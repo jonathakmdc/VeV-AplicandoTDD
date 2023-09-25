@@ -1,4 +1,4 @@
-package test.java.com.gerenciador;
+package GerenciadorTarefas.src.test.java.com.gerenciador;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.com.gerenciador.GerenciadorDeTarefas;
-import main.java.com.gerenciador.Tarefa;
+import GerenciadorTarefas.src.main.java.com.gerenciador.GerenciadorDeTarefas;
+import GerenciadorTarefas.src.main.java.com.gerenciador.Tarefa;
 
 class GerenciadorDeTarefasTest {
 
