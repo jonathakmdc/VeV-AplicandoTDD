@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TarefaTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GerenciadorTarefas in VeV-AplicandoTDD Coverage Results</a> &gt; <a href="index.source.html" class="el_package">GerenciadorTarefas.src.test.java.com.gerenciador</a> &gt; <span class="el_source">TarefaTest.java</span></div><h1>TarefaTest.java</h1><pre class="source lang-java linenums">package GerenciadorTarefas.src.test.java.com.gerenciador;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import GerenciadorTarefas.src.main.java.com.gerenciador.Tarefa;
+
+<span class="fc" id="L11">class TarefaTest {</span>
+
+	@Test
+	void testCriacaoTarefa() {
+<span class="fc" id="L15">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+<span class="fc" id="L17">		assertEquals(&quot;Teste&quot;, tarefa.getTitulo());</span>
+<span class="fc" id="L18">		assertEquals(&quot;descricaoTeste&quot;, tarefa.getDescricao());</span>
+<span class="fc" id="L19">		assertEquals(LocalDate.now(), tarefa.getDataDeVencimento());</span>
+<span class="fc" id="L20">		assertEquals(&quot;alta&quot;, tarefa.getPrioridade());</span>
+<span class="fc" id="L21">	}</span>
+
+	@Test
+	void testEdicaoTarefa() {
+<span class="fc" id="L25">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+<span class="fc" id="L27">		assertEquals(&quot;Teste&quot;, tarefa.getTitulo());</span>
+<span class="fc" id="L28">		assertEquals(&quot;descricaoTeste&quot;, tarefa.getDescricao());</span>
+<span class="fc" id="L29">		assertEquals(LocalDate.now(), tarefa.getDataDeVencimento());</span>
+<span class="fc" id="L30">		assertEquals(&quot;alta&quot;, tarefa.getPrioridade());</span>
+		
+<span class="fc" id="L32">		tarefa.atualizaDetalhes(&quot;Fazer Atividade&quot;, &quot;realizar atividade&quot;, LocalDate.of(2023, 8, 1), &quot;media&quot;);</span>
+
+<span class="fc" id="L34">		assertEquals(&quot;Fazer Atividade&quot;, tarefa.getTitulo());</span>
+<span class="fc" id="L35">		assertEquals(&quot;realizar atividade&quot;, tarefa.getDescricao());</span>
+<span class="fc" id="L36">		assertEquals(LocalDate.of(2023, 8, 1), tarefa.getDataDeVencimento());</span>
+<span class="fc" id="L37">		assertEquals(&quot;media&quot;, tarefa.getPrioridade());</span>
+<span class="fc" id="L38">	}</span>
+	
+	@Test
+	void testEdicaoTarefaUnicoDado() {
+<span class="fc" id="L42">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+<span class="fc" id="L44">		assertEquals(&quot;Teste&quot;, tarefa.getTitulo());</span>
+<span class="fc" id="L45">		assertEquals(&quot;descricaoTeste&quot;, tarefa.getDescricao());</span>
+<span class="fc" id="L46">		assertEquals(LocalDate.now(), tarefa.getDataDeVencimento());</span>
+<span class="fc" id="L47">		assertEquals(&quot;alta&quot;, tarefa.getPrioridade());</span>
+		
+<span class="fc" id="L49">		tarefa.setTitulo(&quot;Fazer fichamento&quot;);</span>
+<span class="fc" id="L50">		assertEquals(&quot;Fazer fichamento&quot;, tarefa.getTitulo());</span>
+		
+<span class="fc" id="L52">		tarefa.setDescricao(&quot;realizar fichamento de ES&quot;);</span>
+<span class="fc" id="L53">		assertEquals(&quot;realizar fichamento de ES&quot;, tarefa.getDescricao());</span>
+		
+<span class="fc" id="L55">		tarefa.setDataDeVencimento(LocalDate.of(2023, 4, 20));</span>
+<span class="fc" id="L56">		assertEquals(LocalDate.of(2023, 4, 20), tarefa.getDataDeVencimento());</span>
+		
+<span class="fc" id="L58">		tarefa.setPrioridade(&quot;media&quot;);</span>
+<span class="fc" id="L59">		assertEquals(&quot;media&quot;, tarefa.getPrioridade());</span>
+<span class="fc" id="L60">	}</span>
+	
+	@Test
+	void testExcecaoTituloInvalido() {
+<span class="fc" id="L64">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+		try {
+<span class="nc" id="L67">			tarefa.setTitulo(null);</span>
+<span class="nc" id="L68">			fail(&quot;Exceção deveria ter sido lançada!&quot;);</span>
+<span class="fc" id="L69">		} catch(IllegalArgumentException e) {</span>
+<span class="fc" id="L70">			assertEquals(&quot;Titulo nao pode ser nulo&quot;, e.getMessage());</span>
+<span class="nc" id="L71">		}</span>
+<span class="fc" id="L72">	}</span>
+	
+	@Test
+	void testExcecaoDescricaoInvalida() {
+<span class="fc" id="L76">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+		try {
+<span class="nc" id="L79">			tarefa.setDescricao(null);</span>
+<span class="nc" id="L80">			fail(&quot;Exceção deveria ter sido lançada!&quot;);</span>
+<span class="fc" id="L81">		} catch(IllegalArgumentException e) {</span>
+<span class="fc" id="L82">			assertEquals(&quot;Descricao nao pode ser nulo&quot;, e.getMessage());</span>
+<span class="nc" id="L83">		}</span>
+<span class="fc" id="L84">	}</span>
+	
+	@Test
+	void testExcecaoDataDeVencimentoInvalida() {
+<span class="fc" id="L88">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+		try {
+<span class="nc" id="L91">			tarefa.setDataDeVencimento(null);</span>
+<span class="nc" id="L92">			fail(&quot;Exceção deveria ter sido lançada!&quot;);</span>
+<span class="fc" id="L93">		} catch(IllegalArgumentException e) {</span>
+<span class="fc" id="L94">			assertEquals(&quot;Data de vencimento nao pode ser nulo&quot;, e.getMessage());</span>
+<span class="nc" id="L95">		}</span>
+<span class="fc" id="L96">	}</span>
+	
+	@Test
+	void testExcecaoPrioridadeNula() {
+<span class="fc" id="L100">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+
+		try {
+<span class="nc" id="L103">			tarefa.setPrioridade(null);</span>
+<span class="nc" id="L104">			fail(&quot;Exceção deveria ter sido lançada!&quot;);</span>
+<span class="fc" id="L105">		} catch(IllegalArgumentException e) {</span>
+<span class="fc" id="L106">			assertEquals(&quot;Prioridade nao pode ser nulo&quot;, e.getMessage());</span>
+<span class="nc" id="L107">		}</span>
+<span class="fc" id="L108">	}</span>
+	
+	@Test
+	void testExcecaoPrioridadeInvalida() {
+<span class="fc" id="L112">		Tarefa tarefa = new Tarefa(&quot;Teste&quot;, &quot;descricaoTeste&quot;, LocalDate.now(), &quot;alta&quot;);</span>
+		
+<span class="fc" id="L114">		tarefa.setPrioridade(&quot;baixa&quot;);</span>
+<span class="fc" id="L115">		assertEquals(&quot;baixa&quot;, tarefa.getPrioridade());</span>
+		
+<span class="fc" id="L117">		tarefa.setPrioridade(&quot;alta&quot;);</span>
+<span class="fc" id="L118">		assertEquals(&quot;alta&quot;, tarefa.getPrioridade());</span>
+		
+<span class="fc" id="L120">		tarefa.setPrioridade(&quot;media&quot;);</span>
+<span class="fc" id="L121">		assertEquals(&quot;media&quot;, tarefa.getPrioridade());</span>
+		
+		try {
+<span class="nc" id="L124">			tarefa.setPrioridade(&quot;ok&quot;);</span>
+<span class="nc" id="L125">			fail(&quot;Exceção deveria ter sido lançada!&quot;);</span>
+<span class="fc" id="L126">		} catch(IllegalArgumentException e) {</span>
+<span class="fc" id="L127">			assertEquals(&quot;Prioridade invalida, so pode alta, media ou baixa&quot;, e.getMessage());</span>
+<span class="nc" id="L128">		}</span>
+<span class="fc" id="L129">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

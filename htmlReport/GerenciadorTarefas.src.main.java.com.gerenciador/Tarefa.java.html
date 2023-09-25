@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Tarefa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GerenciadorTarefas in VeV-AplicandoTDD Coverage Results</a> &gt; <a href="index.source.html" class="el_package">GerenciadorTarefas.src.main.java.com.gerenciador</a> &gt; <span class="el_source">Tarefa.java</span></div><h1>Tarefa.java</h1><pre class="source lang-java linenums">package GerenciadorTarefas.src.main.java.com.gerenciador;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+public class Tarefa {
+	private String titulo;
+	private String descricao;
+	private LocalDate dataDeVencimento;
+	private String prioridade;
+
+<span class="fc" id="L12">	public Tarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {</span>
+<span class="fc" id="L13">		this.setTitulo(titulo);</span>
+<span class="fc" id="L14">		this.setDescricao(descricao);</span>
+<span class="fc" id="L15">		this.setDataDeVencimento(dataDeVencimento);</span>
+<span class="fc" id="L16">		this.setPrioridade(prioridade);</span>
+<span class="fc" id="L17">	}</span>
+
+	public String getTitulo() {
+<span class="fc" id="L20">		return titulo;</span>
+	}
+
+	public String getDescricao() {
+<span class="fc" id="L24">		return descricao;</span>
+	}
+
+	public LocalDate getDataDeVencimento() {
+<span class="fc" id="L28">		return dataDeVencimento;</span>
+	}
+
+	public String getPrioridade() {
+<span class="fc" id="L32">		return prioridade;</span>
+	}
+
+	public void setTitulo(String titulo) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if (titulo == null) {</span>
+<span class="fc" id="L37">			throw new IllegalArgumentException(&quot;Titulo nao pode ser nulo&quot;);</span>
+		}
+<span class="fc" id="L39">		this.titulo = titulo;</span>
+<span class="fc" id="L40">	}</span>
+
+	public void setDescricao(String descricao) {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">		if (descricao == null) {</span>
+<span class="fc" id="L44">			throw new IllegalArgumentException(&quot;Descricao nao pode ser nulo&quot;);</span>
+		}
+<span class="fc" id="L46">		this.descricao = descricao;</span>
+<span class="fc" id="L47">	}</span>
+
+	public void setDataDeVencimento(LocalDate dataDeVencimento) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		if (dataDeVencimento == null) {</span>
+<span class="fc" id="L51">			throw new IllegalArgumentException(&quot;Data de vencimento nao pode ser nulo&quot;);</span>
+		}
+<span class="fc" id="L53">		this.dataDeVencimento = dataDeVencimento;</span>
+<span class="fc" id="L54">	}</span>
+
+	public void setPrioridade(String prioridade) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		if (prioridade == null) {</span>
+<span class="fc" id="L58">			throw new IllegalArgumentException(&quot;Prioridade nao pode ser nulo&quot;);</span>
+		}
+<span class="fc bfc" id="L60" title="All 6 branches covered.">		if (!prioridade.equals(&quot;alta&quot;) &amp;&amp; !prioridade.equals(&quot;media&quot;) &amp;&amp; !prioridade.equals(&quot;baixa&quot;)) {</span>
+<span class="fc" id="L61">			throw new IllegalArgumentException(&quot;Prioridade invalida, so pode alta, media ou baixa&quot;);</span>
+		}
+<span class="fc" id="L63">		this.prioridade = prioridade;</span>
+<span class="fc" id="L64">	}</span>
+
+	public void atualizaDetalhes(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
+<span class="fc" id="L67">		this.setTitulo(titulo);</span>
+<span class="fc" id="L68">		this.setDescricao(descricao);</span>
+<span class="fc" id="L69">		this.setDataDeVencimento(dataDeVencimento);</span>
+<span class="fc" id="L70">		this.setPrioridade(prioridade);</span>
+<span class="fc" id="L71">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L75">		return Objects.hash(dataDeVencimento, descricao, prioridade, titulo);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L81">			return true;</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L83">			return false;</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L85">			return false;</span>
+<span class="fc" id="L86">		Tarefa other = (Tarefa) obj;</span>
+<span class="pc bpc" id="L87" title="2 of 4 branches missed.">		return Objects.equals(dataDeVencimento, other.dataDeVencimento) &amp;&amp; Objects.equals(descricao, other.descricao)</span>
+<span class="pc bpc" id="L88" title="2 of 4 branches missed.">				&amp;&amp; Objects.equals(prioridade, other.prioridade) &amp;&amp; Objects.equals(titulo, other.titulo);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,19 +1,28 @@
-package GerenciadorTarefas.src.test.java.com.gerenciador;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.time.LocalDate;
-
-import org.junit.jupiter.api.Test;
+package GerenciadorTarefas.src.junit5Tests;
 
 import GerenciadorTarefas.src.main.java.com.gerenciador.GerenciadorDeTarefas;
 import GerenciadorTarefas.src.main.java.com.gerenciador.Tarefa;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@DisplayName("Testes de Unidade para Classe GerenciadorDeTarefas")
 class GerenciadorDeTarefasTest {
 
+	GerenciadorDeTarefas gerenciador;
+
+	@BeforeEach
+	void setUp() {
+		gerenciador = new GerenciadorDeTarefas();
+	}
+
 	@Test
+	@DisplayName("Teste para criacao de tarefas")
 	void testCriacaoDeTarefa() {
-		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
 		gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "media");
@@ -23,8 +32,8 @@ class GerenciadorDeTarefasTest {
 	}
 	
 	@Test
+	@DisplayName("Teste da edicao de tarefas")
 	void testEdicaoDeTarefa() {
-		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
 		gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "media");
@@ -36,19 +45,24 @@ class GerenciadorDeTarefasTest {
 				gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de calculo",
 						LocalDate.of(2023, 8, 15), "baixa"));
 
-		assertEquals("Fazer Atividade 2", gerenciador.getTarefa(0).getTitulo());
-		assertEquals("realizar atividade de calculo", gerenciador.getTarefa(0).getDescricao());
-		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());
-		assertEquals("baixa", gerenciador.getTarefa(0).getPrioridade());
+		Tarefa tarefaEditada = gerenciador.editarTarefa(0, "Fazer Atividade 2", "realizar atividade de calculo",
+				LocalDate.of(2023, 8, 15), "baixa");
+
+		assertAll("Verificação da Edição de Tarefa",
+				() -> assertEquals("Fazer Atividade 2", tarefaEditada.getTitulo(), "Título não corresponde"),
+				() -> assertEquals("realizar atividade de calculo", tarefaEditada.getDescricao(), "Descrição não corresponde"),
+				() -> assertEquals(LocalDate.of(2023, 8, 15), tarefaEditada.getDataDeVencimento(), "Data de vencimento não corresponde"),
+				() -> assertEquals("baixa", tarefaEditada.getPrioridade(), "Prioridade não corresponde")
+		);
 		
-		assertEquals(null, gerenciador.getTarefa(1));
+		assertNull(gerenciador.getTarefa(1));
 		
-		assertEquals(null, gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"));
+		assertNull(gerenciador.editarTarefa(1, "Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa"));
 	}
 	
 	@Test
+	@DisplayName("Teste da exclusao de tarefas")
 	void testExclusaoTarefa() {
-		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
 		gerenciador.addTarefa("Fazer Atividade 2", "realizar atividade de calculo", LocalDate.of(2023, 8, 15), "baixa");
@@ -64,14 +78,14 @@ class GerenciadorDeTarefasTest {
 		
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
-		assertEquals(null, gerenciador.getTarefa(0));
+		assertNull(gerenciador.getTarefa(0));
 		
 		assertFalse(gerenciador.excluirTarefa(0));
 	}
 	
 	@Test
+	@DisplayName("Teste da Listagem de Tarefas")
 	void testListagemTarefas() {
-		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();
 		assertEquals(0, gerenciador.getQuantidadeTarefas());
 		
 		gerenciador.addTarefa("Fazer Atividade", "realizar atividade", LocalDate.of(2023, 8, 1), "baixa");

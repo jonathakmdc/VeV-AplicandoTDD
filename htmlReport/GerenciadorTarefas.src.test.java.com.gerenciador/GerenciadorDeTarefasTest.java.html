@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GerenciadorDeTarefasTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GerenciadorTarefas in VeV-AplicandoTDD Coverage Results</a> &gt; <a href="index.source.html" class="el_package">GerenciadorTarefas.src.test.java.com.gerenciador</a> &gt; <span class="el_source">GerenciadorDeTarefasTest.java</span></div><h1>GerenciadorDeTarefasTest.java</h1><pre class="source lang-java linenums">package GerenciadorTarefas.src.test.java.com.gerenciador;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import GerenciadorTarefas.src.main.java.com.gerenciador.GerenciadorDeTarefas;
+import GerenciadorTarefas.src.main.java.com.gerenciador.Tarefa;
+
+<span class="fc" id="L12">class GerenciadorDeTarefasTest {</span>
+
+	@Test
+	void testCriacaoDeTarefa() {
+<span class="fc" id="L16">		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();</span>
+<span class="fc" id="L17">		assertEquals(0, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L19">		gerenciador.addTarefa(&quot;Fazer Atividade&quot;, &quot;realizar atividade&quot;, LocalDate.of(2023, 8, 1), &quot;media&quot;);</span>
+		
+<span class="fc" id="L21">		assertEquals(1, gerenciador.getQuantidadeTarefas());</span>
+
+<span class="fc" id="L23">	}</span>
+	
+	@Test
+	void testEdicaoDeTarefa() {
+<span class="fc" id="L27">		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();</span>
+<span class="fc" id="L28">		assertEquals(0, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L30">		gerenciador.addTarefa(&quot;Fazer Atividade&quot;, &quot;realizar atividade&quot;, LocalDate.of(2023, 8, 1), &quot;media&quot;);</span>
+		
+<span class="fc" id="L32">		assertEquals(1, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L34">		assertEquals(</span>
+<span class="fc" id="L35">				new Tarefa(&quot;Fazer Atividade 2&quot;, &quot;realizar atividade de calculo&quot;, LocalDate.of(2023, 8, 15), &quot;baixa&quot;),</span>
+<span class="fc" id="L36">				gerenciador.editarTarefa(0, &quot;Fazer Atividade 2&quot;, &quot;realizar atividade de calculo&quot;,</span>
+<span class="fc" id="L37">						LocalDate.of(2023, 8, 15), &quot;baixa&quot;));</span>
+
+<span class="fc" id="L39">		assertEquals(&quot;Fazer Atividade 2&quot;, gerenciador.getTarefa(0).getTitulo());</span>
+<span class="fc" id="L40">		assertEquals(&quot;realizar atividade de calculo&quot;, gerenciador.getTarefa(0).getDescricao());</span>
+<span class="fc" id="L41">		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());</span>
+<span class="fc" id="L42">		assertEquals(&quot;baixa&quot;, gerenciador.getTarefa(0).getPrioridade());</span>
+		
+<span class="fc" id="L44">		assertEquals(null, gerenciador.getTarefa(1));</span>
+		
+<span class="fc" id="L46">		assertEquals(null, gerenciador.editarTarefa(1, &quot;Fazer Atividade 2&quot;, &quot;realizar atividade de calculo&quot;, LocalDate.of(2023, 8, 15), &quot;baixa&quot;));</span>
+<span class="fc" id="L47">	}</span>
+	
+	@Test
+	void testExclusaoTarefa() {
+<span class="fc" id="L51">		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();</span>
+<span class="fc" id="L52">		assertEquals(0, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L54">		gerenciador.addTarefa(&quot;Fazer Atividade 2&quot;, &quot;realizar atividade de calculo&quot;, LocalDate.of(2023, 8, 15), &quot;baixa&quot;);</span>
+		
+<span class="fc" id="L56">		assertEquals(&quot;Fazer Atividade 2&quot;, gerenciador.getTarefa(0).getTitulo());</span>
+<span class="fc" id="L57">		assertEquals(&quot;realizar atividade de calculo&quot;, gerenciador.getTarefa(0).getDescricao());</span>
+<span class="fc" id="L58">		assertEquals(LocalDate.of(2023, 8, 15), gerenciador.getTarefa(0).getDataDeVencimento());</span>
+<span class="fc" id="L59">		assertEquals(&quot;baixa&quot;, gerenciador.getTarefa(0).getPrioridade());</span>
+		
+<span class="fc" id="L61">		assertEquals(1, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L63">		assertTrue(gerenciador.excluirTarefa(0));</span>
+		
+<span class="fc" id="L65">		assertEquals(0, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L67">		assertEquals(null, gerenciador.getTarefa(0));</span>
+		
+<span class="fc" id="L69">		assertFalse(gerenciador.excluirTarefa(0));</span>
+<span class="fc" id="L70">	}</span>
+	
+	@Test
+	void testListagemTarefas() {
+<span class="fc" id="L74">		GerenciadorDeTarefas gerenciador = new GerenciadorDeTarefas();</span>
+<span class="fc" id="L75">		assertEquals(0, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L77">		gerenciador.addTarefa(&quot;Fazer Atividade&quot;, &quot;realizar atividade&quot;, LocalDate.of(2023, 8, 1), &quot;baixa&quot;);</span>
+		
+<span class="fc" id="L79">		gerenciador.addTarefa(&quot;Fazer Atividade 2&quot;, &quot;realizar atividade de calculo&quot;, LocalDate.of(2023, 8, 15), &quot;baixa&quot;);</span>
+		
+<span class="fc" id="L81">		gerenciador.addTarefa(&quot;Revisar para prova&quot;, &quot;revisar assunto de ES&quot;, LocalDate.of(2023, 8, 15), &quot;media&quot;);</span>
+		
+<span class="fc" id="L83">		gerenciador.addTarefa(&quot;Fazer Atividade AS&quot;, &quot;realizar atividade de AS&quot;, LocalDate.of(2023, 8, 15), &quot;alta&quot;);</span>
+		
+<span class="fc" id="L85">		gerenciador.addTarefa(&quot;Instalar VS Code&quot;, &quot;realizar instalacao de VS Code&quot;, LocalDate.of(2023, 8, 16), &quot;baixa&quot;);</span>
+		
+<span class="fc" id="L87">		assertEquals(5, gerenciador.getQuantidadeTarefas());</span>
+		
+<span class="fc" id="L89">		assertEquals(&quot;0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n&quot;</span>
+				+ &quot;1 - Fazer Atividade AS - realizar atividade de AS - 2023-08-15 - alta\n&quot;
+				+ &quot;2 - Revisar para prova - revisar assunto de ES - 2023-08-15 - media\n&quot;
+				+ &quot;3 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa\n&quot;
+<span class="fc" id="L93">				+ &quot;4 - Instalar VS Code - realizar instalacao de VS Code - 2023-08-16 - baixa&quot;, gerenciador.toString());</span>
+		
+<span class="fc" id="L95">		gerenciador.excluirTarefa(1);</span>
+		
+<span class="fc" id="L97">		assertEquals(&quot;0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n&quot;</span>
+				+ &quot;1 - Revisar para prova - revisar assunto de ES - 2023-08-15 - media\n&quot;
+				+ &quot;2 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa\n&quot;
+<span class="fc" id="L100">				+ &quot;3 - Instalar VS Code - realizar instalacao de VS Code - 2023-08-16 - baixa&quot;, gerenciador.toString());</span>
+		
+<span class="fc" id="L102">		gerenciador.excluirTarefa(3);</span>
+<span class="fc" id="L103">		gerenciador.excluirTarefa(1);</span>
+		
+<span class="fc" id="L105">		assertEquals(&quot;0 - Fazer Atividade - realizar atividade - 2023-08-01 - baixa\n&quot;</span>
+<span class="fc" id="L106">				+ &quot;1 - Fazer Atividade 2 - realizar atividade de calculo - 2023-08-15 - baixa&quot;, gerenciador.toString());</span>
+		
+<span class="fc" id="L108">		gerenciador.excluirTarefa(1);</span>
+<span class="fc" id="L109">		gerenciador.excluirTarefa(0);</span>
+		
+<span class="fc" id="L111">		assertEquals(&quot;&quot;, gerenciador.toString());</span>
+<span class="fc" id="L112">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
