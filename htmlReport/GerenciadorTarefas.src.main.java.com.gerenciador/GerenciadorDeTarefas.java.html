@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GerenciadorDeTarefas.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GerenciadorTarefas in VeV-AplicandoTDD Coverage Results</a> &gt; <a href="index.source.html" class="el_package">GerenciadorTarefas.src.main.java.com.gerenciador</a> &gt; <span class="el_source">GerenciadorDeTarefas.java</span></div><h1>GerenciadorDeTarefas.java</h1><pre class="source lang-java linenums">package GerenciadorTarefas.src.main.java.com.gerenciador;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GerenciadorDeTarefas {
+	private List&lt;Tarefa&gt; tarefas;
+
+<span class="fc" id="L10">	public GerenciadorDeTarefas() {</span>
+<span class="fc" id="L11">		this.tarefas = new ArrayList&lt;Tarefa&gt;();</span>
+<span class="fc" id="L12">	}</span>
+
+	public void addTarefa(String titulo, String descricao, LocalDate dataDeVencimento, String prioridade) {
+<span class="fc" id="L15">		Tarefa tarefa = new Tarefa(titulo, descricao, dataDeVencimento, prioridade);</span>
+
+<span class="fc" id="L17">		this.tarefas.add(tarefa);</span>
+
+<span class="fc" id="L19">		this.ordenaListaTarefas();</span>
+<span class="fc" id="L20">	}</span>
+
+	public int getQuantidadeTarefas() {
+<span class="fc" id="L23">		return this.tarefas.size();</span>
+	}
+
+	public Tarefa editarTarefa(int index, String titulo, String descricao, LocalDate dataDeVencimento,
+			String prioridade) {
+		try {
+<span class="fc" id="L29">			this.tarefas.get(index).atualizaDetalhes(titulo, descricao, dataDeVencimento, prioridade);</span>
+<span class="fc" id="L30">			this.ordenaListaTarefas();</span>
+<span class="fc" id="L31">			return new Tarefa(titulo, descricao, dataDeVencimento, prioridade);</span>
+<span class="fc" id="L32">		} catch (IndexOutOfBoundsException e) {</span>
+<span class="fc" id="L33">			return null;</span>
+		}
+	}
+
+	public Tarefa getTarefa(int index) {
+		try {
+<span class="fc" id="L39">			return this.tarefas.get(index);</span>
+<span class="fc" id="L40">		} catch (IndexOutOfBoundsException e) {</span>
+<span class="fc" id="L41">			return null;</span>
+		}
+	}
+
+	public boolean excluirTarefa(int index) {
+		try {
+<span class="fc" id="L47">			this.tarefas.remove(index);</span>
+<span class="fc" id="L48">		} catch (IndexOutOfBoundsException e) {</span>
+<span class="fc" id="L49">			return false;</span>
+<span class="fc" id="L50">		}</span>
+<span class="fc" id="L51">		return true;</span>
+	}
+
+	private void ordenaListaTarefas() {
+<span class="fc" id="L55">		this.tarefas.sort((tarefa1, tarefa2) -&gt; {</span>
+<span class="fc" id="L56">			int dataVencimento = tarefa1.getDataDeVencimento().compareTo(tarefa2.getDataDeVencimento());</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">			if (dataVencimento != 0) {</span>
+<span class="fc" id="L58">				return dataVencimento;</span>
+			}
+<span class="fc" id="L60">			return this.compararPrioridade(tarefa1.getPrioridade().toLowerCase(),</span>
+<span class="fc" id="L61">					tarefa2.getPrioridade().toLowerCase());</span>
+		});
+<span class="fc" id="L63">	}</span>
+
+	private int compararPrioridade(String prioridade1, String prioridade2) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		if (prioridade1.equals(prioridade2)) {</span>
+<span class="nc" id="L67">			return 0;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		} else if (prioridade1.equals(&quot;alta&quot;)) {</span>
+<span class="fc" id="L69">			return -1;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		} else if (prioridade2.equals(&quot;alta&quot;)) {</span>
+<span class="fc" id="L71">			return 1;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		} else if (prioridade1.equals(&quot;media&quot;)) {</span>
+<span class="fc" id="L73">			return -1;</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		} else if (prioridade2.equals(&quot;media&quot;)) {</span>
+<span class="fc" id="L75">			return 1;</span>
+		} else {
+<span class="nc" id="L77">			return 0;</span>
+		}
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L83">		StringBuilder result = new StringBuilder();</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		for (int i = 0; i &lt; this.tarefas.size(); i++) {</span>
+<span class="fc" id="L85">			Tarefa tarefa = this.tarefas.get(i);</span>
+<span class="fc" id="L86">			result.append(i).append(&quot; - &quot;).append(tarefa.getTitulo()).append(&quot; - &quot;).append(tarefa.getDescricao())</span>
+<span class="fc" id="L87">					.append(&quot; - &quot;).append(tarefa.getDataDeVencimento()).append(&quot; - &quot;).append(tarefa.getPrioridade());</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">			if (i &lt; this.tarefas.size() - 1) {</span>
+<span class="fc" id="L89">				result.append(&quot;\n&quot;);</span>
+			}
+		}
+<span class="fc" id="L92">		return result.toString();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
